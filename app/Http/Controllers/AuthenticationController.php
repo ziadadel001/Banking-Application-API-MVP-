@@ -19,10 +19,7 @@ class AuthenticationController extends Controller
     {
         $userDto = UserDto::fromAPiFormRequest($register);
         $user =  $this->userService->createUser($userDto);
-        return response()->json([
-            'user' => $user,
-            'success' => true,
-            'message' => 'User created successfully',
-        ]);
+
+        return $this->sendSuccess(['user' => $user], 'Registration successful');
     }
 }
